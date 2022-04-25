@@ -1,6 +1,7 @@
 package com.example.qikservechallenge.core.data;
 
 import com.example.qikservechallenge.core.service.discount.BuyXGetYFreeStrategy;
+import com.example.qikservechallenge.core.service.discount.FlatPercentStrategy;
 import java.util.UUID;
 import java.util.Vector;
 import lombok.AllArgsConstructor;
@@ -53,7 +54,7 @@ public class Basket {
   private Long getTotalOfDiscounts(Product item, Promotion promotion) {
     return switch (promotion.type()) {
       case QTY_BASED_PRICE_OVERRIDE -> 0L;
-      case FLAT_PERCENT -> 0L;
+      case FLAT_PERCENT -> new FlatPercentStrategy(item, promotion).doCalc();
       case BUY_X_GET_Y_FREE -> new BuyXGetYFreeStrategy(item, promotion).doCalc();
     };
   }

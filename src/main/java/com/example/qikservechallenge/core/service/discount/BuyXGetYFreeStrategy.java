@@ -5,8 +5,8 @@ import com.example.qikservechallenge.core.data.Promotion;
 
 public class BuyXGetYFreeStrategy implements DiscountStrategy {
 
-  private Product item;
-  private Promotion promotion;
+  private final Product item;
+  private final Promotion promotion;
 
   public BuyXGetYFreeStrategy(Product item, Promotion promotion) {
     this.item = item;
